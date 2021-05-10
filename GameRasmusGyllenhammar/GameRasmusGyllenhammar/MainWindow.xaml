@@ -1,0 +1,15 @@
+﻿<Window x:Class="GameRasmusGyllenhammar.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GameRasmusGyllenhammar"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Canvas Name="myCanvas" Background="LightBlue" Focusable="True" KeyDown="KeyIsDown" KeyUp="KeyIsUp">
+      
+        <Rectangle Name="player" Height="130" Width="27" Fill="red" Canvas.Left="20" Canvas.Top="50" />
+        <Rectangle Name="ball" Height="25" Width="25" Fill="white" Canvas.Left="381" Canvas.Top="279" />
+        <Rectangle Name="playerTwo" Height="130" Width="27" Fill="Green" Canvas.Left="740" Canvas.Top="50" />
+    </Canvas>
+</Window>

@@ -1,0 +1,15 @@
+C:\Users\rasmus.gyllenhammar\Documents\GitHub\Programmering-slutprojekt-Rasmus-G\GameRasmusGyllenhammar\GameRasmusGyllenhammar\bin\Debug\GameRasmusGyllenhammar.exe.config
+C:\Users\rasmus.gyllenhammar\Documents\GitHub\Programmering-slutprojekt-Rasmus-G\GameRasmusGyllenhammar\GameRasmusGyllenhammar\bin\Debug\GameRasmusGyllenhammar.exe
+C:\Users\rasmus.gyllenhammar\Documents\GitHub\Programmering-slutprojekt-Rasmus-G\GameRasmusGyllenhammar\GameRasmusGyllenhammar\bin\Debug\GameRasmusGyllenhammar.pdb
+C:\Users\rasmus.gyllenhammar\Documents\GitHub\Programmering-slutprojekt-Rasmus-G\GameRasmusGyllenhammar\GameRasmusGyllenhammar\obj\Debug\GameRasmusGyllenhammar.csprojAssemblyReference.cache
+C:\Users\rasmus.gyllenhammar\Documents\GitHub\Programmering-slutprojekt-Rasmus-G\GameRasmusGyllenhammar\GameRasmusGyllenhammar\obj\Debug\MainWindow.g.cs
+C:\Users\rasmus.gyllenhammar\Documents\GitHub\Programmering-slutprojekt-Rasmus-G\GameRasmusGyllenhammar\GameRasmusGyllenhammar\obj\Debug\App.g.cs
+C:\Users\rasmus.gyllenhammar\Documents\GitHub\Programmering-slutprojekt-Rasmus-G\GameRasmusGyllenhammar\GameRasmusGyllenhammar\obj\Debug\GameRasmusGyllenhammar_MarkupCompile.cache
+C:\Users\rasmus.gyllenhammar\Documents\GitHub\Programmering-slutprojekt-Rasmus-G\GameRasmusGyllenhammar\GameRasmusGyllenhammar\obj\Debug\GameRasmusGyllenhammar_MarkupCompile.lref
+C:\Users\rasmus.gyllenhammar\Documents\GitHub\Programmering-slutprojekt-Rasmus-G\GameRasmusGyllenhammar\GameRasmusGyllenhammar\obj\Debug\MainWindow.baml
+C:\Users\rasmus.gyllenhammar\Documents\GitHub\Programmering-slutprojekt-Rasmus-G\GameRasmusGyllenhammar\GameRasmusGyllenhammar\obj\Debug\GameRasmusGyllenhammar.g.resources
+C:\Users\rasmus.gyllenhammar\Documents\GitHub\Programmering-slutprojekt-Rasmus-G\GameRasmusGyllenhammar\GameRasmusGyllenhammar\obj\Debug\GameRasmusGyllenhammar.Properties.Resources.resources
+C:\Users\rasmus.gyllenhammar\Documents\GitHub\Programmering-slutprojekt-Rasmus-G\GameRasmusGyllenhammar\GameRasmusGyllenhammar\obj\Debug\GameRasmusGyllenhammar.csproj.GenerateResource.cache
+C:\Users\rasmus.gyllenhammar\Documents\GitHub\Programmering-slutprojekt-Rasmus-G\GameRasmusGyllenhammar\GameRasmusGyllenhammar\obj\Debug\GameRasmusGyllenhammar.csproj.CoreCompileInputs.cache
+C:\Users\rasmus.gyllenhammar\Documents\GitHub\Programmering-slutprojekt-Rasmus-G\GameRasmusGyllenhammar\GameRasmusGyllenhammar\obj\Debug\GameRasmusGyllenhammar.exe
+C:\Users\rasmus.gyllenhammar\Documents\GitHub\Programmering-slutprojekt-Rasmus-G\GameRasmusGyllenhammar\GameRasmusGyllenhammar\obj\Debug\GameRasmusGyllenhammar.pdb
