@@ -16,7 +16,9 @@ namespace GameRasmusGyllenhammar
 
         public void move()
         {
-            throw new NotImplementedException();
+            
+          
+
         }
     }
 }

@@ -27,9 +27,11 @@ namespace GameRasmusGyllenhammar
         int playerSpeed = 8;
         int playerTwoSpeed = 8;
         int speed = 12;
+        
 
         DispatcherTimer gameTimer = new DispatcherTimer(); //instans av timer
-
+        player firstPlayey = new player();
+        player secondPlayer = new player();
         public MainWindow()
         {
             InitializeComponent();
@@ -41,9 +43,10 @@ namespace GameRasmusGyllenhammar
             gameTimer.Interval = TimeSpan.FromMilliseconds(20);  //hur ofta vi vill att den ska ticka
             gameTimer.Start();
             //objekt av klassen player, till spelarna sen
-            player playerOne = new player();
-            player playerTwo = new player();
-            playerOne.Score = 0;
+           
+           
+         
+            
             
            // dd.keyIsUp(); fixa koden i PLayerOne
         }
@@ -52,36 +55,37 @@ namespace GameRasmusGyllenhammar
         {       //kolla upp om spelaren
 
 
-            if (goUp == true && Canvas.GetTop(player)  > 5)
-            {
-                Canvas.SetTop(player, Canvas.GetTop(player) - playerSpeed);
-               
-            }
+                        //testa go == up
+                        if (goUp == true && Canvas.GetTop(player)  > 5)
+                        {
+                            Canvas.SetTop(player, Canvas.GetTop(player) - playerSpeed);
 
-            if (goDown == true && Canvas.GetTop(player) + (player.Height + 45) < Application.Current.MainWindow.Height)
-            {
-                Canvas.SetTop(player, Canvas.GetTop(player) + playerSpeed);
-            }
-            //player two
-            if (goUp == true && Canvas.GetTop(playerTwo) > 5)
-            {
-                Canvas.SetTop(playerTwo, Canvas.GetTop(playerTwo) - playerTwoSpeed);
-                
-            }
+                        }
 
-            if (goDown == true && Canvas.GetTop(playerTwo) + (playerTwo.Height + 45) < Application.Current.MainWindow.Height)
-            {
-                Canvas.SetTop(playerTwo, Canvas.GetTop(playerTwo) + playerTwoSpeed);
-            }
+                        if (goDown == true && Canvas.GetTop(player) + (player.Height + 45) < Application.Current.MainWindow.Height)
+                        {
+                            Canvas.SetTop(player, Canvas.GetTop(player) + playerSpeed);
+                        }
+                        //player two
+                        if (goUp == true && Canvas.GetTop(playerTwo) > 5)
+                        {
+                            Canvas.SetTop(playerTwo, Canvas.GetTop(playerTwo) - playerTwoSpeed);
 
+                        }
+
+                        if (goDown == true && Canvas.GetTop(playerTwo) + (playerTwo.Height + 45) < Application.Current.MainWindow.Height)
+                        {
+                            Canvas.SetTop(playerTwo, Canvas.GetTop(playerTwo) + playerTwoSpeed);
+                        }
+            
             Canvas.SetLeft(ball, Canvas.GetLeft(ball) - speed);
 
-            //reverese the speed när den når sin gräns från vänster till höger
-            //om den är mindre än 5 l.e från vänster och är större än bredden av skärmen, lägga i en annan metod
-           if (Canvas.GetLeft(ball) < 5 || Canvas.GetLeft(ball) + (ball.Width * 1.2) > Application.Current.MainWindow.Width)
-            {
-                speed = -speed;
-            }
+                        //reverese the speed när den når sin gräns från vänster till höger
+                        //om den är mindre än 5 l.e från vänster och är större än bredden av skärmen, lägga i en annan metod
+                       if (Canvas.GetLeft(ball) < 5 || Canvas.GetLeft(ball) + (ball.Width * 1.2) > Application.Current.MainWindow.Width)
+                        {
+                            speed = -speed;
+                        }
         }
         /*
          ifall man inte trycker på någon knapp så ska det var true
@@ -95,22 +99,28 @@ namespace GameRasmusGyllenhammar
                 case Key.Up: //ha player.move boolean?
                     goUp = true;
                     goDown = false;
+                    
+                   
                     playerSpeed = 0;
                     break;
                 case Key.W:
                     goUp = true;
                     goDown = false;
+                   
                     playerTwoSpeed = 0;
                     
                     break;
                 case Key.Down:
                     goUp = false;
                     goDown = true;
+                 
                     playerSpeed = 0;
                     break;
                 case Key.S:
                     goUp = false;
                     goDown = true;
+                   
+                  
                     playerTwoSpeed = 0;
                     break;
             }
@@ -156,7 +166,7 @@ namespace GameRasmusGyllenhammar
         {
 
         }
-        private void ChechCollisionWithWall()
+        private void CheckCollisionWithWall()
         {
 
         }

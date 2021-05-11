@@ -11,5 +11,6 @@
         <Rectangle Name="player" Height="130" Width="27" Fill="red" Canvas.Left="20" Canvas.Top="50" />
         <Rectangle Name="ball" Height="25" Width="25" Fill="white" Canvas.Left="381" Canvas.Top="279" />
         <Rectangle Name="playerTwo" Height="130" Width="27" Fill="Green" Canvas.Left="740" Canvas.Top="50" />
+        
     </Canvas>
 </Window>
