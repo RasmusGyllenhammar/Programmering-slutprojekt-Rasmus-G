@@ -8,14 +8,15 @@ namespace GameRasmusGyllenhammar
 {
     class Ball : Imove
     {
+        private double yPosition;
+        private double xPosition;
+
         public void move()
         {
             throw new NotImplementedException();
         }
-
-        private void CheckCollision()
-        {
-
-        }
+        public double XPosition { get => xPosition; set => xPosition = value; }
+        public double YPosition { get => yPosition; set => yPosition = value; }
+        
     }
 }

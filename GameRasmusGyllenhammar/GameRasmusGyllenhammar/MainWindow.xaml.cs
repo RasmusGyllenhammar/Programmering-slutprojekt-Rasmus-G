@@ -26,43 +26,63 @@ namespace GameRasmusGyllenhammar
         bool  goUp, goDown;
         int playerSpeed = 8;
         int playerTwoSpeed = 8;
-        int speed = 12;
+        int ballSpeed = 12;
         
 
         DispatcherTimer gameTimer = new DispatcherTimer(); //instans av timer
-        player firstPlayey = new player();
-        player secondPlayer = new player();
+        Player firstPlayer = new Player();
+        Player secondPlayer = new Player();
+        Ball gameBall = new Ball { XPosition = 740, YPosition = 50 };
+       
         public MainWindow()
         {
             InitializeComponent();
 
             myCanvas.Focus(); //fokusera på canvasen bara
 
-            gameTimer.Tick += PlayerMove; //linking to an event
+            gameTimer.Tick += GameTimerEvent; //linking to an event
             //gameTimer.Tick += playermove;
             gameTimer.Interval = TimeSpan.FromMilliseconds(20);  //hur ofta vi vill att den ska ticka
             gameTimer.Start();
+
             //objekt av klassen player, till spelarna sen
            
-           
-         
             
-            
-           // dd.keyIsUp(); fixa koden i PLayerOne
+
+
+
+
+            // dd.keyIsUp(); fixa koden i PLayerOne
         }
         
-        private void PlayerMove(object sender, EventArgs e)
+        public double BallXPosition
+        {
+            get { return gameBall.XPosition; }
+            set
+            {
+                gameBall.XPosition = value;
+            }
+        }
+        public double BallYPosition
+        {
+            get { return gameBall.YPosition; }
+            set
+            {
+                gameBall.YPosition = value;
+            }
+        }
+
+
+        private void GameTimerEvent(object sender, EventArgs e)
         {       //kolla upp om spelaren
 
 
-                        //testa go == up
+                        //testa while go == up, båda har goUp därför går de samtdigt
                         if (goUp == true && Canvas.GetTop(player)  > 5)
                         {
                             Canvas.SetTop(player, Canvas.GetTop(player) - playerSpeed);
 
-                        }
-
-                        if (goDown == true && Canvas.GetTop(player) + (player.Height + 45) < Application.Current.MainWindow.Height)
+                        }else if (goDown == true && Canvas.GetTop(player) + (player.Height + 45) < Application.Current.MainWindow.Height)
                         {
                             Canvas.SetTop(player, Canvas.GetTop(player) + playerSpeed);
                         }
@@ -71,22 +91,23 @@ namespace GameRasmusGyllenhammar
                         {
                             Canvas.SetTop(playerTwo, Canvas.GetTop(playerTwo) - playerTwoSpeed);
 
-                        }
-
-                        if (goDown == true && Canvas.GetTop(playerTwo) + (playerTwo.Height + 45) < Application.Current.MainWindow.Height)
+                        }else if (goDown == true && Canvas.GetTop(playerTwo) + (playerTwo.Height + 45) < Application.Current.MainWindow.Height)
                         {
                             Canvas.SetTop(playerTwo, Canvas.GetTop(playerTwo) + playerTwoSpeed);
                         }
-            
-            Canvas.SetLeft(ball, Canvas.GetLeft(ball) - speed);
+
+            CheckCollisionWithPlayers();
+          
+            //rör mot vänster sida
+            Canvas.SetLeft(ball, Canvas.GetLeft(ball) - ballSpeed);
 
                         //reverese the speed när den når sin gräns från vänster till höger
-                        //om den är mindre än 5 l.e från vänster och är större än bredden av skärmen, lägga i en annan metod
-                       if (Canvas.GetLeft(ball) < 5 || Canvas.GetLeft(ball) + (ball.Width * 1.2) > Application.Current.MainWindow.Width)
-                        {
-                            speed = -speed;
-                        }
+                        //om den är mindre än 5 l.e från vänster och är större än bredden av skärmen, 
+                      NewPoint();
+
+           
         }
+
         /*
          ifall man inte trycker på någon knapp så ska det var true
         känner av ifall en av pilarna är trycka
@@ -160,15 +181,55 @@ namespace GameRasmusGyllenhammar
         
         private void NewPoint()
         {
-            
+            //kolla ifall den överstiger skärmen, sen reset (x,y) 
+            if (Canvas.GetLeft(ball) < 1 )
+            {
+                ballSpeed = -ballSpeed;
+                ResetBallPosition();
+
+            }
+            if (Canvas.GetLeft(ball) + (ball.Width * 1.3) > Application.Current.MainWindow.Width)
+            {
+                ballSpeed = -ballSpeed;
+                ResetBallPosition();
+            }
+        }
+
+        private void ResetBallPosition()
+        {
+            Canvas.SetTop(ball, 300);
+            Canvas.SetLeft(ball, 350);
         }
         private void CheckCollisionWithPlayers()
         {
 
+            foreach (var rectangles in myCanvas.Children.OfType<Rectangle>())
+            {
+                if ((string)rectangles.Tag == "paddle")
+                {
+                    rectangles.Stroke = Brushes.Black;
+
+                    Rect ballHitBox = new Rect(Canvas.GetLeft(ball), Canvas.GetTop(ball), ball.Width, ball.Height);
+                    Rect playerHitBox = new Rect(Canvas.GetLeft(rectangles), Canvas.GetTop(rectangles), rectangles.Width, rectangles.Height);
+                    if (ballHitBox.IntersectsWith(playerHitBox))
+                    {
+                        ballSpeed = -ballSpeed;
+                        Canvas.SetRight(ball, Canvas.GetRight(rectangles) - ball.Height);
+                       
+                    }
+                    
+                }
+                
+               
+            }
         }
         private void CheckCollisionWithWall()
         {
-
+            
+        }
+        private void changeDirection()
+        {
+            
         }
     }
 }

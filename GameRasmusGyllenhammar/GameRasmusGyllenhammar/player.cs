@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace GameRasmusGyllenhammar
 {   
     
-    class player : Imove
+    class Player : Imove
     {
        
 
@@ -16,8 +16,7 @@ namespace GameRasmusGyllenhammar
 
         public void move()
         {
-            
-          
+                     
 
         }
     }
