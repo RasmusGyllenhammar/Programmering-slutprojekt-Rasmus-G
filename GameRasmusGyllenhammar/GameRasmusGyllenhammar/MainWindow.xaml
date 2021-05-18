@@ -10,9 +10,9 @@
         <Label Content="red score: "/>
         <Label Content="green score: "/>
         <Rectangle Name="player" Height="130" Width="27" Fill="red" Canvas.Left="40" Canvas.Top="250" Tag="paddle"/>
-      
         <Rectangle Name="playerTwo" Height="130" Width="27" Fill="Green" Canvas.Left="720" Canvas.Top="250" Tag="paddle"/>
-        <Rectangle Name="ball" Height="25" Width="25" Fill="white" Canvas.Left="200" Canvas.Top="300" />
+
+        <Rectangle Name="ball" Height="25" Width="25" Fill="white" Canvas.Left="400" Canvas.Top="300" />
             
     </Canvas>
 </Window>

@@ -23,17 +23,17 @@ namespace GameRasmusGyllenhammar
     public partial class MainWindow : Window
     {
 
-        bool  goUp, goDown;
+        bool goUp, goDown;
         int playerSpeed = 8;
         int playerTwoSpeed = 8;
         int ballSpeed = 12;
-        
+
 
         DispatcherTimer gameTimer = new DispatcherTimer(); //instans av timer
         Player firstPlayer = new Player();
         Player secondPlayer = new Player();
         Ball gameBall = new Ball { XPosition = 740, YPosition = 50 };
-       
+
         public MainWindow()
         {
             InitializeComponent();
@@ -45,13 +45,8 @@ namespace GameRasmusGyllenhammar
             gameTimer.Interval = TimeSpan.FromMilliseconds(20);  //hur ofta vi vill att den ska ticka
             gameTimer.Start();
 
-            //objekt av klassen player, till spelarna sen
            
-            
-
-
-
-
+       
             // dd.keyIsUp(); fixa koden i PLayerOne
         }
         
@@ -101,9 +96,15 @@ namespace GameRasmusGyllenhammar
             //rör mot vänster sida
             Canvas.SetLeft(ball, Canvas.GetLeft(ball) - ballSpeed);
 
-                        //reverese the speed när den når sin gräns från vänster till höger
-                        //om den är mindre än 5 l.e från vänster och är större än bredden av skärmen, 
-                      NewPoint();
+            //reverese the speed när den når sin gräns från vänster till höger
+            /*
+               if (Canvas.GetLeft(ball) < 5 || Canvas.GetLeft(ball) + (ball.Width * 1.2) > Application.Current.MainWindow.Width)
+            {
+                speed = -speed;
+            }
+             */
+            //om den är mindre än 5 l.e från vänster och är större än bredden av skärmen, 
+            NewPoint();
 
            
         }
@@ -186,19 +187,21 @@ namespace GameRasmusGyllenhammar
             {
                 ballSpeed = -ballSpeed;
                 ResetBallPosition();
+                firstPlayer.Score += 1;
 
             }
             if (Canvas.GetLeft(ball) + (ball.Width * 1.3) > Application.Current.MainWindow.Width)
             {
                 ballSpeed = -ballSpeed;
                 ResetBallPosition();
+                secondPlayer.Score += 1;
             }
         }
 
         private void ResetBallPosition()
         {
             Canvas.SetTop(ball, 300);
-            Canvas.SetLeft(ball, 350);
+            Canvas.SetLeft(ball, 400);
         }
         private void CheckCollisionWithPlayers()
         {
@@ -222,6 +225,13 @@ namespace GameRasmusGyllenhammar
                 
                
             }
+        }
+
+        private void BallAngle()
+        {
+            var randmoizeBallAngle = new Random();
+           
+
         }
         private void CheckCollisionWithWall()
         {
