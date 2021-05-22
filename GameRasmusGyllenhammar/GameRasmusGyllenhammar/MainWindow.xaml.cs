@@ -99,7 +99,8 @@ namespace GameRasmusGyllenhammar
             UpdateBallPosition();
             NewPoint();
             CheckCollisionWithWalls();
-           
+            EndScreen();
+          
 
             //reverese the speed när den når sin gräns från vänster till höger
             /*
@@ -113,6 +114,12 @@ namespace GameRasmusGyllenhammar
 
 
         }
+
+        private void PlayerMove()
+        {
+
+        }
+
 
         /*
          ifall man inte trycker på någon knapp så ska det var true
@@ -207,7 +214,7 @@ namespace GameRasmusGyllenhammar
 
         private void ResetBallPosition()
         {
-            Canvas.SetTop(ball, 300);
+            Canvas.SetTop(ball, 200);
             Canvas.SetLeft(ball, 400);
         }
         private void CheckCollisionWithPlayers()
@@ -225,6 +232,7 @@ namespace GameRasmusGyllenhammar
                     {   
                         
                         ballSpeedX = -ballSpeedX;
+                       // ballSpeedX -= 1;
                         BallAngle(ballHitBox.Y  + 12.5, playerHitBox.Y + 65);
                         //ballSpeedY += 1;
                         Canvas.SetRight(ball, Canvas.GetRight(rectangles) - ball.Height);
@@ -240,7 +248,7 @@ namespace GameRasmusGyllenhammar
         private void BallAngle( double ballY, double playerY)
         {
             var playerHeight = 65;
-            var maxAngle = (5 * Math.PI / 12); //75 degree, max vinklen
+            var maxAngle = (Math.PI / 3); //75 eller 60 degree, max vinklen
            
             //vinkeln att rotera hastigheten
             var nextAngle = (ballY - playerY) / playerHeight * maxAngle;
@@ -263,19 +271,62 @@ namespace GameRasmusGyllenhammar
         }
         private void CheckCollisionWithWalls()
         {
-            if (Canvas.GetTop(ball) + (ball.Height * 1.4) > Application.Current.MainWindow.Height)
+            if (Canvas.GetTop(ball) + (ball.Height + 35) > Application.Current.MainWindow.Height)
             {
-                //studsa iväg
+                ballSpeedY = -ballSpeedY;
             }
 
-            
+            if (Canvas.GetTop(ball) < 10)
+            {
+
+                ballSpeedY = -ballSpeedY;
+            }
+
+
+
         }
 
 
-
-        private void GameReset()
+        /// <summary>
+        /// stannar bollen och öppnar pop up fönstret med alternativ
+        /// </summary>
+        private void EndScreen()
         {
-            //nollställ poängen och kalla på ballreset
+            if (firstPlayer.Score >= 1 || secondPlayer.Score >= 1)
+            {
+                ballSpeedX = 0;
+                ballSpeedY = 0;
+                endScreen.IsOpen = true;
+                
+            }
+
+            
+
+        }
+
+        private void StartNewGame()
+        {
+            /*   UpdateBallPosition();
+                greenPlayerLabel.Content = "Green Score: ";
+                redPlayerLabel.Content = "Red Score: ";*/
+            System.Diagnostics.Process.Start(Application.ResourceAssembly.Location);
+            Application.Current.Shutdown();
+        }
+
+        private void button_restart(object sender, RoutedEventArgs e)
+        {
+            StartNewGame();
+            
+        }
+
+        private void button_close(object sender, RoutedEventArgs e)
+        {
+            CloseGame();
+        }
+
+        private void CloseGame()
+        {
+            Application.Current.Shutdown();
         }
     }
 }

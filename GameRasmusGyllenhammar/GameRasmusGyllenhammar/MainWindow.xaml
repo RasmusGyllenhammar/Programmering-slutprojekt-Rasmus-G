@@ -10,10 +10,17 @@
         <Label Name="redPlayerLabel" Content="Red Score: " Background="white"/>
         <Label Name="greenPlayerLabel"  Canvas.Left="670" Content="Green Score: " Background="White"/>
         <Line   X1="400" Y1="0" X2="400" Y2="500" Stroke="Black" StrokeDashArray="2, 4" StrokeThickness="5" />
-        <Rectangle Name="player" Height="130" Width="27" Fill="red" Canvas.Left="40" Canvas.Top="250" Tag="paddle"/>
-        <Rectangle Name="playerTwo" Height="130" Width="27" Fill="Green" Canvas.Left="720" Canvas.Top="250" Tag="paddle"/>
+        <Rectangle Name="player" Height="130" Width="15" Fill="red" Canvas.Left="20" Canvas.Top="160" Tag="paddle"/>
+        <Rectangle Name="playerTwo" Height="130" Width="15" Fill="Green" Canvas.Left="740" Canvas.Top="160" Tag="paddle"/>
         
-        <Rectangle Name="ball" Height="25" Width="25" Fill="white" Canvas.Left="400" Canvas.Top="300" />
-            
+        <Rectangle Name="ball" Height="25" Width="25" Fill="white" Canvas.Left="400" Canvas.Top="200" />
+        
+        <Popup Name="endScreen" Width="250" Height="100" Canvas.Left="275" Canvas.Top="120" Margin="10,10,0 13">
+            <StackPanel>
+                <TextBlock Background="white">Press one of the two buttons below!</TextBlock>
+                <Button Name="restartButton" Click="button_restart"> Restart Game</Button>
+                <Button Name="closeGameButton" Click="button_close"> Close Game </Button>    
+            </StackPanel>
+        </Popup>
     </Canvas>
 </Window>
