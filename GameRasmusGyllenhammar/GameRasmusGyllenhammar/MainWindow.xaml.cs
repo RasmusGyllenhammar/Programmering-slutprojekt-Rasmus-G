@@ -26,18 +26,20 @@ namespace GameRasmusGyllenhammar
         bool goUp, goDown;
         int playerSpeed = 8;
         int playerTwoSpeed = 8;
-        int ballSpeed = 12;
+        double ballSpeedX = 12;
+        double ballSpeedY = 0;
 
 
         DispatcherTimer gameTimer = new DispatcherTimer(); //instans av timer
         Player firstPlayer = new Player();
         Player secondPlayer = new Player();
+       
         Ball gameBall = new Ball { XPosition = 740, YPosition = 50 };
-
+        Random randomize = new Random();
         public MainWindow()
         {
             InitializeComponent();
-
+           
             myCanvas.Focus(); //fokusera på canvasen bara
 
             gameTimer.Tick += GameTimerEvent; //linking to an event
@@ -67,9 +69,9 @@ namespace GameRasmusGyllenhammar
             }
         }
 
-
+        
         private void GameTimerEvent(object sender, EventArgs e)
-        {       //kolla upp om spelaren
+        {      
 
 
                         //testa while go == up, båda har goUp därför går de samtdigt
@@ -92,9 +94,12 @@ namespace GameRasmusGyllenhammar
                         }
 
             CheckCollisionWithPlayers();
-          
+
             //rör mot vänster sida
-            Canvas.SetLeft(ball, Canvas.GetLeft(ball) - ballSpeed);
+            UpdateBallPosition();
+            NewPoint();
+            CheckCollisionWithWalls();
+           
 
             //reverese the speed när den når sin gräns från vänster till höger
             /*
@@ -104,9 +109,9 @@ namespace GameRasmusGyllenhammar
             }
              */
             //om den är mindre än 5 l.e från vänster och är större än bredden av skärmen, 
-            NewPoint();
 
-           
+
+
         }
 
         /*
@@ -185,16 +190,18 @@ namespace GameRasmusGyllenhammar
             //kolla ifall den överstiger skärmen, sen reset (x,y) 
             if (Canvas.GetLeft(ball) < 1 )
             {
-                ballSpeed = -ballSpeed;
+                ballSpeedX = -ballSpeedX;
                 ResetBallPosition();
                 firstPlayer.Score += 1;
+                greenPlayerLabel.Content = "Green Score: " + firstPlayer.Score;
 
             }
             if (Canvas.GetLeft(ball) + (ball.Width * 1.3) > Application.Current.MainWindow.Width)
             {
-                ballSpeed = -ballSpeed;
+                ballSpeedX = -ballSpeedX;
                 ResetBallPosition();
                 secondPlayer.Score += 1;
+                redPlayerLabel.Content = "Red Score: " + secondPlayer.Score;
             }
         }
 
@@ -215,8 +222,11 @@ namespace GameRasmusGyllenhammar
                     Rect ballHitBox = new Rect(Canvas.GetLeft(ball), Canvas.GetTop(ball), ball.Width, ball.Height);
                     Rect playerHitBox = new Rect(Canvas.GetLeft(rectangles), Canvas.GetTop(rectangles), rectangles.Width, rectangles.Height);
                     if (ballHitBox.IntersectsWith(playerHitBox))
-                    {
-                        ballSpeed = -ballSpeed;
+                    {   
+                        
+                        ballSpeedX = -ballSpeedX;
+                        BallAngle(ballHitBox.Y  + 12.5, playerHitBox.Y + 65);
+                        //ballSpeedY += 1;
                         Canvas.SetRight(ball, Canvas.GetRight(rectangles) - ball.Height);
                        
                     }
@@ -227,19 +237,45 @@ namespace GameRasmusGyllenhammar
             }
         }
 
-        private void BallAngle()
+        private void BallAngle( double ballY, double playerY)
         {
-            var randmoizeBallAngle = new Random();
+            var playerHeight = 65;
+            var maxAngle = (5 * Math.PI / 12); //75 degree, max vinklen
            
+            //vinkeln att rotera hastigheten
+            var nextAngle = (ballY - playerY) / playerHeight * maxAngle;
+            //samma speed
+            var speedMagnitude = Math.Sqrt(Math.Pow(ballSpeedX, 2) + Math.Pow(ballSpeedY, 2));
 
+            //upptadera bollV i x och y
+            ballSpeedX = speedMagnitude * Math.Cos(nextAngle) * Math.Sign(ballSpeedX); // kollar också ifall det är negativt eller positivt
+            ballSpeedY = speedMagnitude * Math.Sin(nextAngle);
+
+           
         }
-        private void CheckCollisionWithWall()
+
+        private void UpdateBallPosition() 
         {
+          
+            Canvas.SetLeft(ball, Canvas.GetLeft(ball) + ballSpeedX);
+            Canvas.SetTop(ball, Canvas.GetTop(ball) + ballSpeedY);
+          
+        }
+        private void CheckCollisionWithWalls()
+        {
+            if (Canvas.GetTop(ball) + (ball.Height * 1.4) > Application.Current.MainWindow.Height)
+            {
+                //studsa iväg
+            }
+
             
         }
-        private void changeDirection()
+
+
+
+        private void GameReset()
         {
-            
+            //nollställ poängen och kalla på ballreset
         }
     }
 }
