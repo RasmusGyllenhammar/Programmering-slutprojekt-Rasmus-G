@@ -13,3 +13,5 @@ C:\Users\rasmus.gyllenhammar\Documents\GitHub\Programmering-slutprojekt-Rasmus-G
 C:\Users\rasmus.gyllenhammar\Documents\GitHub\Programmering-slutprojekt-Rasmus-G\GameRasmusGyllenhammar\GameRasmusGyllenhammar\obj\Debug\GameRasmusGyllenhammar.csproj.CoreCompileInputs.cache
 C:\Users\rasmus.gyllenhammar\Documents\GitHub\Programmering-slutprojekt-Rasmus-G\GameRasmusGyllenhammar\GameRasmusGyllenhammar\obj\Debug\GameRasmusGyllenhammar.exe
 C:\Users\rasmus.gyllenhammar\Documents\GitHub\Programmering-slutprojekt-Rasmus-G\GameRasmusGyllenhammar\GameRasmusGyllenhammar\obj\Debug\GameRasmusGyllenhammar.pdb
+C:\Users\rasmus.gyllenhammar\Documents\GitHub\Programmering-slutprojekt-Rasmus-G\GameRasmusGyllenhammar\GameRasmusGyllenhammar\obj\Debug\EndMenu.g.cs
+C:\Users\rasmus.gyllenhammar\Documents\GitHub\Programmering-slutprojekt-Rasmus-G\GameRasmusGyllenhammar\GameRasmusGyllenhammar\obj\Debug\EndMenu.baml

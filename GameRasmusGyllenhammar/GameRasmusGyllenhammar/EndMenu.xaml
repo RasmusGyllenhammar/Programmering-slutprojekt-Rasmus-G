@@ -1,0 +1,14 @@
+﻿<Window x:Class="GameRasmusGyllenhammar.EndMenu"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GameRasmusGyllenhammar"
+        mc:Ignorable="d"
+        Title="EndMenu" Height="90" Width="400">
+    <StackPanel>
+        <TextBlock Background="white">Press one of the two buttons below!</TextBlock>
+        <Button Background="White" Name="restartButton" Click="button_restart">Restart Game</Button>
+        <Button Background="White" Name="closeGameButton" Click="button_close">Close Game</Button>
+    </StackPanel>
+</Window>

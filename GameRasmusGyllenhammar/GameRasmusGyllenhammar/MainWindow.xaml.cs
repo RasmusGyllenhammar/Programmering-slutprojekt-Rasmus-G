@@ -27,15 +27,15 @@ namespace GameRasmusGyllenhammar
         int playerSpeed = 8;
         int playerTwoSpeed = 8;
         double ballSpeedX = 12;
-        double ballSpeedY = 4;
-
+        double ballSpeedY = 2;
+        bool openPopup = true;
 
         DispatcherTimer gameTimer = new DispatcherTimer(); //instans av timer
         Player firstPlayer = new Player();
         Player secondPlayer = new Player();
        
         Ball gameBall = new Ball { XPosition = 740, YPosition = 50 };
-        Random randomize = new Random();
+       
         public MainWindow()
         {
             InitializeComponent();
@@ -45,9 +45,9 @@ namespace GameRasmusGyllenhammar
             gameTimer.Tick += GameTimerEvent; //Länkar till ett event
             gameTimer.Interval = TimeSpan.FromMilliseconds(20);  //hur ofta vi vill att den ska ticka
             gameTimer.Start();
+            
 
-           
-       
+
             // dd.keyIsUp(); fixa koden i PLayerOne
         }
 
@@ -72,8 +72,9 @@ namespace GameRasmusGyllenhammar
             CheckCollisionWithWalls();
 
             EndScreen();
-    
+
         }
+
         /// <summary>
         /// Kollar ifall boolean är sann och spelaren är innanför skärmen så ska den 
         /// kunna röra på sig, 
@@ -314,51 +315,22 @@ namespace GameRasmusGyllenhammar
         /// </summary>
         private void EndScreen()
         {
-            if (firstPlayer.Score >= 1 || secondPlayer.Score >= 1)
+            if (firstPlayer.Score >= 5 || secondPlayer.Score >= 5)
             {
                 ballSpeedX = 0;
                 ballSpeedY = 0;
-                endScreen.IsOpen = true;
+
+                if (openPopup)
+                {
+                    EndMenu MenuWindow = new EndMenu();
+                    MenuWindow.Show();
+                    openPopup = false;
+                }
                 
             }
 
         }
-        /// <summary>
-        /// metod som startar om programmet och stänger ner förra
-        /// </summary>
-        private void StartNewGame()
-        {
-            /*   UpdateBallPosition();
-                greenPlayerLabel.Content = "Green Score: ";
-                redPlayerLabel.Content = "Red Score: ";*/
-            System.Diagnostics.Process.Start(Application.ResourceAssembly.Location);
-            Application.Current.Shutdown();
-        }
-        /// <summary>
-        /// knappen som kallar på startNewGame();  när man trycker på den
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void button_restart(object sender, RoutedEventArgs e)
-        {
-            StartNewGame();
-            
-        }
-        /// <summary>
-        /// button_close kallar på metod CloseGame(); 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void button_close(object sender, RoutedEventArgs e)
-        {
-            CloseGame();
-        }
-        /// <summary>
-        /// Metoden stänger ner programmet
-        /// </summary>
-        private void CloseGame()
-        {
-            Application.Current.Shutdown();
-        }
+      
+      
     }
 }
