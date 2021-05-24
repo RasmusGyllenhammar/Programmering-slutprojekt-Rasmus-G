@@ -8,6 +8,6 @@ namespace GameRasmusGyllenhammar
 {
     interface Imove
     {
-        void move();
+        void Move(bool move);
     }
 }

@@ -11,10 +11,13 @@ namespace GameRasmusGyllenhammar
         private double yPosition;
         private double xPosition;
 
-        public void move()
+      
+
+        public void Move(bool move)
         {
             throw new NotImplementedException();
         }
+
         public double XPosition { get => xPosition; set => xPosition = value; }
         public double YPosition { get => yPosition; set => yPosition = value; }
         

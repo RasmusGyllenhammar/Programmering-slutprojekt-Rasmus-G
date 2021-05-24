@@ -27,7 +27,7 @@ namespace GameRasmusGyllenhammar
         int playerSpeed = 8;
         int playerTwoSpeed = 8;
         double ballSpeedX = 12;
-        double ballSpeedY = 0;
+        double ballSpeedY = 4;
 
 
         DispatcherTimer gameTimer = new DispatcherTimer(); //instans av timer
@@ -42,8 +42,7 @@ namespace GameRasmusGyllenhammar
            
             myCanvas.Focus(); //fokusera på canvasen bara
 
-            gameTimer.Tick += GameTimerEvent; //linking to an event
-            //gameTimer.Tick += playermove;
+            gameTimer.Tick += GameTimerEvent; //Länkar till ett event
             gameTimer.Interval = TimeSpan.FromMilliseconds(20);  //hur ofta vi vill att den ska ticka
             gameTimer.Start();
 
@@ -51,80 +50,68 @@ namespace GameRasmusGyllenhammar
        
             // dd.keyIsUp(); fixa koden i PLayerOne
         }
-        
-        public double BallXPosition
-        {
-            get { return gameBall.XPosition; }
-            set
-            {
-                gameBall.XPosition = value;
-            }
-        }
-        public double BallYPosition
-        {
-            get { return gameBall.YPosition; }
-            set
-            {
-                gameBall.YPosition = value;
-            }
-        }
 
-        
+
+
+        /// <summary>
+        /// Metoden länkad till tick så denna uppdateras varje 20 millisekund.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void GameTimerEvent(object sender, EventArgs e)
-        {      
+        {
 
-
-                        //testa while go == up, båda har goUp därför går de samtdigt
-                        if (goUp == true && Canvas.GetTop(player)  > 5)
-                        {
-                            Canvas.SetTop(player, Canvas.GetTop(player) - playerSpeed);
-
-                        }else if (goDown == true && Canvas.GetTop(player) + (player.Height + 45) < Application.Current.MainWindow.Height)
-                        {
-                            Canvas.SetTop(player, Canvas.GetTop(player) + playerSpeed);
-                        }
-                        //player two
-                        if (goUp == true && Canvas.GetTop(playerTwo) > 5)
-                        {
-                            Canvas.SetTop(playerTwo, Canvas.GetTop(playerTwo) - playerTwoSpeed);
-
-                        }else if (goDown == true && Canvas.GetTop(playerTwo) + (playerTwo.Height + 45) < Application.Current.MainWindow.Height)
-                        {
-                            Canvas.SetTop(playerTwo, Canvas.GetTop(playerTwo) + playerTwoSpeed);
-                        }
+            PlayersMovement();        
 
             CheckCollisionWithPlayers();
 
-            //rör mot vänster sida
             UpdateBallPosition();
+
             NewPoint();
+
             CheckCollisionWithWalls();
+
             EndScreen();
-          
-
-            //reverese the speed när den når sin gräns från vänster till höger
-            /*
-               if (Canvas.GetLeft(ball) < 5 || Canvas.GetLeft(ball) + (ball.Width * 1.2) > Application.Current.MainWindow.Width)
-            {
-                speed = -speed;
-            }
-             */
-            //om den är mindre än 5 l.e från vänster och är större än bredden av skärmen, 
-
-
-
+    
         }
-
-        private void PlayerMove()
+        /// <summary>
+        /// Kollar ifall boolean är sann och spelaren är innanför skärmen så ska den 
+        /// kunna röra på sig, 
+        /// </summary>
+        private void PlayersMovement()
         {
+            firstPlayer.Move(goUp);
+            secondPlayer.Move(goUp);
 
+
+            if (goUp == true && Canvas.GetTop(player) > 5)
+            {
+                Canvas.SetTop(player, Canvas.GetTop(player) - playerSpeed);
+
+            }
+            else if (goDown == true && Canvas.GetTop(player) + (player.Height + 45) < Application.Current.MainWindow.Height)
+            {
+                Canvas.SetTop(player, Canvas.GetTop(player) + playerSpeed);
+            }
+            //player two
+            if (goUp == true && Canvas.GetTop(playerTwo) > 5)
+            {
+                Canvas.SetTop(playerTwo, Canvas.GetTop(playerTwo) - playerTwoSpeed);
+
+            }
+            else if (goDown == true && Canvas.GetTop(playerTwo) + (playerTwo.Height + 45) < Application.Current.MainWindow.Height)
+            {
+                Canvas.SetTop(playerTwo, Canvas.GetTop(playerTwo) + playerTwoSpeed);
+            }
         }
 
 
-        /*
-         ifall man inte trycker på någon knapp så ska det var true
-        känner av ifall en av pilarna är trycka
-         */
+        /// <summary>
+        ///  ifall man inte trycker på någon knapp så ska det var true
+        ///  känner av ifall en av pilarna är trycka
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void KeyIsDown(object sender, KeyEventArgs e)
         { 
 
@@ -161,9 +148,13 @@ namespace GameRasmusGyllenhammar
           
 
         }
-        /*
-         ifall man inte trycker på någon knapp så ska det var false
-         */
+
+
+        /// <summary>
+        ///  ifall man inte trycker på någon knapp så ska det var false
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void KeyIsUp(object sender, KeyEventArgs e)
         {
             switch (e.Key)
@@ -191,7 +182,13 @@ namespace GameRasmusGyllenhammar
 
            
         }
-        
+
+        /// <summary>
+        /// Metoden kollar ifall bollen åker ut ur sidorna och då ska
+        /// bollen byta riktning och man kallar på ResetBallPosition()
+        /// beroende vilket håll den åker ut så ökar spelarnas score med 1
+        /// och uppdaterar labeln
+        /// </summary>
         private void NewPoint()
         {
             //kolla ifall den överstiger skärmen, sen reset (x,y) 
@@ -212,11 +209,20 @@ namespace GameRasmusGyllenhammar
             }
         }
 
+        /// <summary>
+        /// Metoden återställer bollen grund position dvs i mitten
+        /// </summary>
         private void ResetBallPosition()
         {
             Canvas.SetTop(ball, 200);
             Canvas.SetLeft(ball, 400);
         }
+
+        /// <summary>
+        /// Denna metod kollar ifall bollen interagerar med spelarna. Skapar två rect med egenskaperna 
+        /// från bollen och racken och ifall de interagerar så ska X hastigheten byta riktning samt att 
+        /// man kallar på BallAngle för att skapa vinkeln åt bollen när den nuddar racken. 
+        /// </summary>
         private void CheckCollisionWithPlayers()
         {
 
@@ -241,17 +247,27 @@ namespace GameRasmusGyllenhammar
                     
                 }
                 
-               
             }
         }
 
+        /// <summary>
+        /// Metoden räknar ut vinkeln när den nuddar racken, man utgår ifrån mitten av racken.
+        /// man utgår ifrån spelarnas halva höjd. Sedan tar vi skillnaden mellan y-pos av bollen och spelarn och delar det på 
+        /// spelarnas höjd gånger maxvinkeln vi vill den ska studsa. Sedan räknar vi ut speed och har den till samma hastighet. 
+        /// I slutet uppdaterar man X och Y hastighet med den hastigheten gånger vinkeln. 
+        /// </summary>
+        /// <param name="ballY">Y-pos för bollen</param>
+        /// <param name="playerY">Y-pos för spelaren för att kunna se vart bollen och spelaren kolliderar med varandra</param>
         private void BallAngle( double ballY, double playerY)
         {
+            //halva spelarnas höjd
             var playerHeight = 65;
+
             var maxAngle = (Math.PI / 3); //75 eller 60 degree, max vinklen
            
             //vinkeln att rotera hastigheten
             var nextAngle = (ballY - playerY) / playerHeight * maxAngle;
+           
             //samma speed
             var speedMagnitude = Math.Sqrt(Math.Pow(ballSpeedX, 2) + Math.Pow(ballSpeedY, 2));
 
@@ -261,22 +277,29 @@ namespace GameRasmusGyllenhammar
 
            
         }
-
+        /// <summary>
+        /// uppdaterar bollen och sätter igång att den åker åt ett visst håll; 
+        /// </summary>
         private void UpdateBallPosition() 
         {
-          
+            // var ballDirection = randomize.Next(-12, 12);
+           // ballSpeedX = randomize.Next(-11, 21);
             Canvas.SetLeft(ball, Canvas.GetLeft(ball) + ballSpeedX);
             Canvas.SetTop(ball, Canvas.GetTop(ball) + ballSpeedY);
           
         }
+
+        /// <summary>
+        /// Kollar ifall bollen kolliderar med väggarna isåfall ska Y-värdet ändra riktning
+        /// </summary>
         private void CheckCollisionWithWalls()
         {
-            if (Canvas.GetTop(ball) + (ball.Height + 35) > Application.Current.MainWindow.Height)
+            if (Canvas.GetTop(ball) + (ball.Height + 37) > Application.Current.MainWindow.Height)
             {
                 ballSpeedY = -ballSpeedY;
             }
 
-            if (Canvas.GetTop(ball) < 10)
+            if (Canvas.GetTop(ball) < 8)
             {
 
                 ballSpeedY = -ballSpeedY;
@@ -286,9 +309,8 @@ namespace GameRasmusGyllenhammar
 
         }
 
-
         /// <summary>
-        /// stannar bollen och öppnar pop up fönstret med alternativ
+        /// stannar bollen och öppnar pop up fönstret med alternativ att stänga ner eller att starta nytt spel
         /// </summary>
         private void EndScreen()
         {
@@ -300,10 +322,10 @@ namespace GameRasmusGyllenhammar
                 
             }
 
-            
-
         }
-
+        /// <summary>
+        /// metod som startar om programmet och stänger ner förra
+        /// </summary>
         private void StartNewGame()
         {
             /*   UpdateBallPosition();
@@ -312,18 +334,28 @@ namespace GameRasmusGyllenhammar
             System.Diagnostics.Process.Start(Application.ResourceAssembly.Location);
             Application.Current.Shutdown();
         }
-
+        /// <summary>
+        /// knappen som kallar på startNewGame();  när man trycker på den
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button_restart(object sender, RoutedEventArgs e)
         {
             StartNewGame();
             
         }
-
+        /// <summary>
+        /// button_close kallar på metod CloseGame(); 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button_close(object sender, RoutedEventArgs e)
         {
             CloseGame();
         }
-
+        /// <summary>
+        /// Metoden stänger ner programmet
+        /// </summary>
         private void CloseGame()
         {
             Application.Current.Shutdown();

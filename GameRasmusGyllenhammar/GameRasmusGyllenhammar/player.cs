@@ -14,11 +14,15 @@ namespace GameRasmusGyllenhammar
         public int Score { get; set; }
         public int PlayerID { get; set; }
 
-        public void move()
-        {
-            
-           
+       
 
+        public void Move(bool move)
+        {
+            if (move == true)
+            {
+
+            }
+         
         }
     }
 }
