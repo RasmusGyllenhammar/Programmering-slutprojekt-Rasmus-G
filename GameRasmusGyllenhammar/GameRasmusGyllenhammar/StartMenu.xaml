@@ -1,0 +1,14 @@
+﻿<Window x:Class="GameRasmusGyllenhammar.StartMenu"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GameRasmusGyllenhammar"
+        mc:Ignorable="d"
+        Title="StartMenu" Height="90" Width="400">
+    <StackPanel>
+        <TextBlock Background="white">Welcome! Choose to start game or go in to settings!</TextBlock>
+        <Button Background="White" Name="startButton" Click="button_start">Start Game</Button>
+        <Button Background="White" Name="settings" Click="button_settings">Settings</Button>
+    </StackPanel>
+</Window>

@@ -28,6 +28,7 @@ namespace GameRasmusGyllenhammar
         int playerTwoSpeed = 8;
         double ballSpeedX = 12;
         double ballSpeedY = 2;
+        bool openStartMenu = true;
         bool openPopup = true;
 
         DispatcherTimer gameTimer = new DispatcherTimer(); //instans av timer
@@ -60,6 +61,7 @@ namespace GameRasmusGyllenhammar
         /// <param name="e"></param>
         private void GameTimerEvent(object sender, EventArgs e)
         {
+           
 
             PlayersMovement();        
 
@@ -310,6 +312,19 @@ namespace GameRasmusGyllenhammar
 
         }
 
+        /* private void StartScreen()
+          {
+              if (openStartMenu)
+              {
+
+
+                  StartMenu StartWindow = new StartMenu();
+
+                  StartWindow.Show();
+                  openStartMenu = false;
+              }
+          }*/
+
         /// <summary>
         /// stannar bollen och öppnar pop up fönstret med alternativ att stänga ner eller att starta nytt spel
         /// </summary>
@@ -322,6 +337,7 @@ namespace GameRasmusGyllenhammar
 
                 if (openPopup)
                 {
+                  //  this.Hide();
                     EndMenu MenuWindow = new EndMenu();
                     MenuWindow.Show();
                     openPopup = false;
