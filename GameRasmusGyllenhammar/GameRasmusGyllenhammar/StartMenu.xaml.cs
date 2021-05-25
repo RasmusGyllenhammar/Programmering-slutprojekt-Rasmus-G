@@ -18,14 +18,12 @@ namespace GameRasmusGyllenhammar
     /// Interaction logic for StartMenu.xaml
     /// </summary>
     public partial class StartMenu : Window
-    {   
-
-      
+    {
         public StartMenu()
         {
             InitializeComponent();
         }
-
+        
         private void StartGame()
         {
             System.Diagnostics.Process.Start(Application.ResourceAssembly.Location);

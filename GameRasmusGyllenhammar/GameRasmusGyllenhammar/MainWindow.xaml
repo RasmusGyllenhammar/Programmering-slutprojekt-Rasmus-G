@@ -5,20 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GameRasmusGyllenhammar"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" MaxHeight="450" MaxWidth="800" MinHeight="450" MinWidth="800">
-    <Canvas Name="myCanvas" Background="LightBlue" Focusable="True" KeyDown="KeyIsDown" KeyUp="KeyIsUp">
-        <Label Name="redPlayerLabel" Canvas.Left="310" Content="Red Score: " Background="white"/>
-        <Label Name="greenPlayerLabel"  Canvas.Left="425" Content="Green Score: " Background="White"/>
-        
-        <Line   X1="400" Y1="0" X2="400" Y2="430" Stroke="Black" StrokeDashArray="3, 4" StrokeThickness="8" />
-        
-        <Rectangle Name="player" Height="130" Width="15" Fill="red" Canvas.Left="20" Canvas.Top="160" Tag="paddle"/>
-        <Rectangle Name="playerTwo" Height="130" Width="15" Fill="Green" Canvas.Left="740" Canvas.Top="160" Tag="paddle"/>
-        
-        <Rectangle Name="ball" Height="25" Width="25" Fill="white" Canvas.Left="400" Canvas.Top="200" />
-        
-        
-        
-        
-    </Canvas>
+        Title="MainWindow" Height="90" Width="400" MaxHeight="90" MaxWidth="400">
+    <StackPanel>
+        <TextBlock Background="white">Welcome! Choose to start game or go in to settings!</TextBlock>
+        <Button Background="White" Name="startButton" Click="button_start">Start Game</Button>
+        <Button Background="White" Name="settings" Click="button_close">Close</Button>
+    </StackPanel>
 </Window>

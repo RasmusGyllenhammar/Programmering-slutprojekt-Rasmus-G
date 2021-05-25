@@ -28,9 +28,12 @@ namespace GameRasmusGyllenhammar
         /// </summary>
         private void StartNewGame()
         {
-           
-            System.Diagnostics.Process.Start(Application.ResourceAssembly.Location);
-            Application.Current.Shutdown();
+
+            GameWindow PongWindow = new GameWindow();
+            PongWindow.Show();
+            this.Close();
+            //Application.Current.Shutdown();
+
         }
         /// <summary>
         /// knappen som kallar på startNewGame();  när man trycker på den
@@ -58,5 +61,13 @@ namespace GameRasmusGyllenhammar
         {
             Application.Current.Shutdown();
         }
+
+       
+
+     
+        
+           // System.Diagnostics.Process.Start(Application.ResourceAssembly.Location);
+           // Application.Current.Shutdown();
+        
     }
 }

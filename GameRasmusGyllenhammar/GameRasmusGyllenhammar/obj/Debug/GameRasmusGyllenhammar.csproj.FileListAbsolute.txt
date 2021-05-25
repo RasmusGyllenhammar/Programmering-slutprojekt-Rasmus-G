@@ -17,3 +17,5 @@ C:\Users\rasmus.gyllenhammar\Documents\GitHub\Programmering-slutprojekt-Rasmus-G
 C:\Users\rasmus.gyllenhammar\Documents\GitHub\Programmering-slutprojekt-Rasmus-G\GameRasmusGyllenhammar\GameRasmusGyllenhammar\obj\Debug\EndMenu.baml
 C:\Users\rasmus.gyllenhammar\Documents\GitHub\Programmering-slutprojekt-Rasmus-G\GameRasmusGyllenhammar\GameRasmusGyllenhammar\obj\Debug\StartMenu.g.cs
 C:\Users\rasmus.gyllenhammar\Documents\GitHub\Programmering-slutprojekt-Rasmus-G\GameRasmusGyllenhammar\GameRasmusGyllenhammar\obj\Debug\StartMenu.baml
+C:\Users\rasmus.gyllenhammar\Documents\GitHub\Programmering-slutprojekt-Rasmus-G\GameRasmusGyllenhammar\GameRasmusGyllenhammar\obj\Debug\GameWindow.g.cs
+C:\Users\rasmus.gyllenhammar\Documents\GitHub\Programmering-slutprojekt-Rasmus-G\GameRasmusGyllenhammar\GameRasmusGyllenhammar\obj\Debug\GameWindow.baml

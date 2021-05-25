@@ -9,6 +9,7 @@
     <StackPanel>
         <TextBlock Background="white">Press one of the two buttons below!</TextBlock>
         <Button Background="White" Name="restartButton" Click="button_restart">Restart Game</Button>
+      
         <Button Background="White" Name="closeGameButton" Click="button_close">Close Game</Button>
     </StackPanel>
 </Window>
