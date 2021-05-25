@@ -28,12 +28,7 @@ namespace GameRasmusGyllenhammar
         public MainWindow()
         {
             InitializeComponent();
-           
-           
-            
 
-
-            // dd.keyIsUp(); fixa koden i PLayerOne
         }
         /// <summary>
         /// skapar instans av pongfönstret och showar det och stänger ner start menyn

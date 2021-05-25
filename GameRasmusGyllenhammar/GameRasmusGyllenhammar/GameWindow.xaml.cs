@@ -176,7 +176,7 @@ namespace GameRasmusGyllenhammar
         }
 
         /// <summary>
-        /// Metoden kollar ifall bollen åker ut ur sidorna och då ska
+        /// Metoden kollar ifall bollen åker ut ur sidorna och då ska(borde gjort en ny metod)
         /// bollen byta riktning och man kallar på ResetBallPosition()
         /// beroende vilket håll den åker ut så ökar spelarnas score med 1
         /// och uppdaterar labeln
@@ -211,8 +211,9 @@ namespace GameRasmusGyllenhammar
         }
 
         /// <summary>
-        /// Denna metod kollar ifall bollen interagerar med spelarna. Skapar två rect med egenskaperna 
-        /// från bollen och racken och ifall de interagerar så ska X hastigheten byta riktning samt att 
+        /// Denna metod kollar ifall bollen interagerar med spelarna. Jag kollar efter rektanglar som har taggen "paddle"
+        /// Skapar två rect med egenskaperna 
+        /// från bollen och racken(från taggen) och ifall de interagerar så ska X hastigheten byta riktning samt att 
         /// man kallar på BallAngle för att skapa vinkeln åt bollen när den nuddar racken. 
         /// </summary>
         private void CheckCollisionWithPlayers()

@@ -62,12 +62,6 @@ namespace GameRasmusGyllenhammar
             Application.Current.Shutdown();
         }
 
-       
-
-     
-        
-           // System.Diagnostics.Process.Start(Application.ResourceAssembly.Location);
-           // Application.Current.Shutdown();
-        
+  
     }
 }

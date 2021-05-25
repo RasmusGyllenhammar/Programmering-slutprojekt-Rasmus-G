@@ -17,7 +17,7 @@ namespace GameRasmusGyllenhammar
        
 
         public void Move(bool move)
-        {
+        { //test
             if (move == true)
             {
 

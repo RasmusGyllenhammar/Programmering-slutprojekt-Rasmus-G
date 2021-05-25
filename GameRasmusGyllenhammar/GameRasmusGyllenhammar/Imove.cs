@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 namespace GameRasmusGyllenhammar
 {
     interface Imove
-    {
+    {   
+        //test med en parameter
         void Move(bool move);
     }
 }
